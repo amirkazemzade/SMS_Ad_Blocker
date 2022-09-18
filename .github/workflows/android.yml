@@ -14,7 +14,6 @@ jobs:
     steps:
     - uses: sparkfabrik/android-build-action@v1.0.0
       with:
-        project-path: /home/runner/work/SMS_Ad_Blocker/
         output-path: SMS_Ad_Blocker_release.apk
         gradle-task: assembleRelease
    
