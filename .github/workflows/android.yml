@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: SMSAdBlocker
-          path: ./app/build/outputs/apk/release/app-release-unsigned.apk
+          path: ./app/build/outputs/apk/debug
 
       - name: Release
         uses: fnkr/github-action-ghr@v1
