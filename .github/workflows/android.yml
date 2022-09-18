@@ -29,3 +29,8 @@ jobs:
         with:
           name: SMSAdBlocker
           path: ./app/build/outputs/apk/release
+      - uses: elgohr/Github-Release-Action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          title: APK Release
