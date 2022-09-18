@@ -29,8 +29,9 @@ jobs:
         with:
           name: SMSAdBlocker
           path: ./app/build/outputs/apk/release
-      - uses: elgohr/Github-Release-Action@v4
+      
+      - name: Release
+        uses: fnkr/github-action-ghr@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        with:
-          title: APK Release
+          GHR_PATH: ./app/build/outputs/apk/release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
