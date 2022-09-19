@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -24,7 +22,11 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
                     Scaffold(
                         topBar = {
-                            TopAppBar {
+                            val appBarColor = MaterialTheme.colors.primary
+                            TopAppBar(
+                                backgroundColor = appBarColor,
+                                contentColor = contentColorFor(backgroundColor = appBarColor)
+                            ) {
                                 Text(smsAdsBlockerText)
                             }
                         }
