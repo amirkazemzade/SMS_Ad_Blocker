@@ -36,3 +36,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           title: APK Release
+          path: ./app/build/outputs/apk/debug/app-debug.apk
