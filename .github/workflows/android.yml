@@ -30,6 +30,9 @@ jobs:
           name: SMSAdBlocker
           path: ./app/build/outputs/apk/debug/app-debug.apk
 
+      - name: Navigate to apk path
+        run: cd ./app/build/outputs/apk/debug/
+
       - name: Create a Release
         uses: elgohr/Github-Release-Action@v4
         env:
