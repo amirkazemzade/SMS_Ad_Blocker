@@ -28,11 +28,11 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: SMSAdBlocker
-          path: ./app/build/outputs/apk/debug
+          path: ./app/build/outputs/apk/debug/app-debug.apk
 
       - name: Create a Release
         uses: elgohr/Github-Release-Action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: MyReleaseMessage
+          title: APK Release
