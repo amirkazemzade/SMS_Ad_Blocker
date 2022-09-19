@@ -34,4 +34,4 @@ jobs:
         uses: fnkr/github-action-ghr@v1
         env:
           GHR_PATH: ./app/build/outputs/apk/release/app-release-unsigned.apk
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
