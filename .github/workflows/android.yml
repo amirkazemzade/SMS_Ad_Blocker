@@ -33,10 +33,12 @@ jobs:
       - name: Navigate to apk path
         run: cd ./app/build/outputs/apk/debug/
 
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@v4
+      - name: Create release and upload apk
+        uses: underwindfall/create-release-with-debugapk@v2.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: APK Release
-          path: ./app/build/outputs/apk/debug/app-debug.apk
+          tag_name: v0.1.0
+          asset_path: ./app/build/outputs/apk/debug/app-debug.apk
+          asset_name: SMSAdBlocker.apk
+          asset_content_type: application/zip
