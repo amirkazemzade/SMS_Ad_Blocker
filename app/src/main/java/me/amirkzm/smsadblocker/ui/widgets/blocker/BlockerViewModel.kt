@@ -32,7 +32,7 @@ class BlockerViewModel : ViewModel() {
     private fun insertAdNumbersToBlockList(context: Context) {
         for (i in 0..999) {
             _state.value = BlockerState.Loading(progress = i.toFloat() / 999)
-            val adNumber = "735${"%04d".format(i)}"
+            val adNumber = "735${"%03d".format(i)}"
             blockNumber(context, adNumber)
         }
     }
@@ -40,7 +40,7 @@ class BlockerViewModel : ViewModel() {
     private fun deleteAdNumbersFromBlockList(context: Context) {
         for (i in 0..999) {
             _state.value = BlockerState.Loading(progress = i.toFloat() / 999)
-            val adNumber = "735${"%04d".format(i)}"
+            val adNumber = "735${"%03d".format(i)}"
             val uri = blockNumber(context, adNumber)
             context.contentResolver.delete(uri!!, null, null)
         }
