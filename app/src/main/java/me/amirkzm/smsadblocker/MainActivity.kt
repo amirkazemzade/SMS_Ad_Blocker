@@ -12,15 +12,23 @@ import androidx.compose.ui.unit.LayoutDirection
 import me.amirkzm.smsadblocker.resources.smsAdsBlockerText
 import me.amirkzm.smsadblocker.ui.theme.SMSAdBlockerTheme
 import me.amirkzm.smsadblocker.ui.widgets.default_cheker.DefaultChecker
+import me.amirkzm.smsadblocker.ui.widgets.util.LocalSnackbarHostState
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SMSAdBlockerTheme {
+
                 // A surface container using the 'background' color from the theme
-                CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
+                val scaffoldState = rememberScaffoldState()
+
+                CompositionLocalProvider(
+                    LocalLayoutDirection provides LayoutDirection.Rtl,
+                    LocalSnackbarHostState provides scaffoldState.snackbarHostState
+                ) {
                     Scaffold(
+                        scaffoldState = scaffoldState,
                         topBar = {
                             val appBarColor = MaterialTheme.colors.primary
                             TopAppBar(

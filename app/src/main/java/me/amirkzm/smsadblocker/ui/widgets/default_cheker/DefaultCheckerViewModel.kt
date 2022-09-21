@@ -34,22 +34,6 @@ class DefaultCheckerViewModel : ViewModel() {
         val isAlreadyDefaultDialer = packageNameText == defaultDialerPackage
         setDefaultDialerState(isAlreadyDefaultDialer)
     }
-
-    fun changeDefaultDialer(
-        context: Context,
-        launcher: ManagedActivityResultLauncher<Intent, ActivityResult>,
-    ) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val roleManager = context.getSystemService(ROLE_SERVICE) as RoleManager?
-            val intent = roleManager!!.createRequestRoleIntent(RoleManager.ROLE_DIALER)
-            launcher.launch(intent)
-            return
-        }
-        val intent = Intent(TelecomManager.ACTION_CHANGE_DEFAULT_DIALER).apply {
-            putExtra(TelecomManager.EXTRA_CHANGE_DEFAULT_DIALER_PACKAGE_NAME, packageNameText)
-        }
-        launcher.launch(intent)
-    }
 }
 
 

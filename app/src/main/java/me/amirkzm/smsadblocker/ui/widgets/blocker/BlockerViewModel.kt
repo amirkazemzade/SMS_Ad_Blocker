@@ -10,13 +10,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.text.DecimalFormat
 
 
 class BlockerViewModel : ViewModel() {
     private val _state = MutableStateFlow<BlockerState>(BlockerState.Initial)
     val state: StateFlow<BlockerState> = _state
 
+
+    fun resetState() {
+        _state.value = BlockerState.Initial
+    }
 
     fun blockAdNumbers(context: Context) {
         _state.value = BlockerState.Loading(progress = 0.0f)
@@ -27,19 +30,17 @@ class BlockerViewModel : ViewModel() {
     }
 
     private fun insertAdNumbersToBlockList(context: Context) {
-        val formatter = DecimalFormat("###")
         for (i in 0..999) {
             _state.value = BlockerState.Loading(progress = i.toFloat() / 999)
-            val adNumber = "7356${formatter.format(i)}"
+            val adNumber = "735${"%04d".format(i)}"
             blockNumber(context, adNumber)
         }
     }
 
     private fun deleteAdNumbersFromBlockList(context: Context) {
-        val formatter = DecimalFormat("###")
         for (i in 0..999) {
             _state.value = BlockerState.Loading(progress = i.toFloat() / 999)
-            val adNumber = "7356${formatter.format(i)}"
+            val adNumber = "735${"%04d".format(i)}"
             val uri = blockNumber(context, adNumber)
             context.contentResolver.delete(uri!!, null, null)
         }
@@ -53,11 +54,4 @@ class BlockerViewModel : ViewModel() {
         values.put(BlockedNumbers.COLUMN_ORIGINAL_NUMBER, number)
         return context.contentResolver.insert(BlockedNumbers.CONTENT_URI, values)
     }
-}
-
-sealed class BlockerState {
-    object Initial : BlockerState()
-    data class Loading(val progress: Float) : BlockerState()
-    object Success : BlockerState()
-    data class Error(val message: String) : BlockerState()
 }
