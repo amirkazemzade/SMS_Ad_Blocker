@@ -83,7 +83,7 @@ fun SMSAdBlockerThemeM3(
     val colors = when {
         useDynamicColors && useDarkTheme -> dynamicDarkColorScheme(LocalContext.current)
         useDynamicColors && !useDarkTheme -> dynamicLightColorScheme(LocalContext.current)
-        useDynamicColors -> DarkColors
+        useDarkTheme -> DarkColors
         else -> LightColors
     }
 
